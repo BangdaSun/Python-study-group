@@ -10,7 +10,8 @@ type(mylist)
 #   start from zero
 #   use negative integer to index backward
 mylist[0]  # first element
-mylist[-1] # last  element
+mylist[-1]  # last element
+mylist.index(6)  # element want to index
 
 ### Slicing
 #   using : operator
