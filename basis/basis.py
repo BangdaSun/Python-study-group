@@ -11,6 +11,21 @@
     Basic syntax of python is consistent with other popular programming languages
     such as C/C++/Java. And it's case sensitive.
 """
+#   Get the current date
+from datetime import datetime
+now = datetime.now()
+print(now)
+
+print(now.year)
+print(now.month)
+print(now.day)
+print(now.hour)
+print(now.minute)
+print(now.second)
+
+#   Get the input and save it into a variable
+pw = raw_input('enter your password: ')
+print(pw)
 
 ### 2. As math calculator
 #   numbers: integer and float
@@ -52,3 +67,4 @@ len(myname) # len() function is very useful!
 
 #   string print (also can be applied on other data types)
 print("My name is %s and I\'m from %s" % (myname, myschool))
+print('My name is %s and I\'m %d years old' % ('bangda', 23))
