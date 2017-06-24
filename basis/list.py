@@ -28,7 +28,7 @@ print(mylist)
 mylist.insert(3, 4) # add element before specific index position
 
 #   copy
-mylist_copy = mylist[:]
+mylist_copy = mylist[:] # IMPORTANT!
 mylist_copy = list(mylist)
 
 #   remove
@@ -40,3 +40,39 @@ del(mylist[0])    # delete directly
 #   keep in mind this will change list directly with no undo operations...
 mylist.reverse
 mylist.sort
+
+### List comprehension
+#   where we can creaet list using for loop but within one line
+#   [output expr for iterator.var in iterable object]
+#   [output expr + cond on output for iterator.var in iterable object + cond on iterable]
+
+#   extract even numbers
+import numpy as np
+num  = np.random.randint(0, 100, 50)
+even = [entry for entry in num if entry % 2 == 0]
+even
+
+#   if the number is odd, print 'odd', else print 'even'
+even_odd = ['even' if entry % 2 == 0 else 'odd' for entry in num]
+even_odd
+
+### Iterator in list
+#   list, dictionary, string are all iterable
+#   python has iterator object, use iter() method
+#   apply iter() to iterable object, create iterator
+num_iter = iter(num)
+print(next(num_iter))
+print(next(num_iter))
+print(next(num_iter))
+print(next(num_iter))
+print(next(num_iter))
+
+#   iter over file conn
+import os
+os.getcwd()
+file = open('file.txt')
+file_iter = iter(file)
+
+next(file_iter)
+next(file_iter)
+next(file_iter)
