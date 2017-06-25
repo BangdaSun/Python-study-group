@@ -68,3 +68,32 @@ len(myname) # len() function is very useful!
 #   string print (also can be applied on other data types)
 print("My name is %s and I\'m from %s" % (myname, myschool))
 print('My name is %s and I\'m %d years old' % ('bangda', 23))
+
+### 4. Control flow and loop
+#   boolean operator / expression
+1 < 2 and 2 < 3
+1 == 3 or 2 > 3
+not 1 != 0
+
+#   apply in list
+temperature = [17, 16, 18, 23, 24, 22, 21]
+high_tem = temperature > 20  # doesn't return the expected result like in r.
+high_tem = [entry > 20 for entry in temperature]
+high_tem
+#temperature[high_tem]  # doesn't work: list indices must be integers
+
+#   control flow and loop
+for x in range(100):
+    if x % 2 == 0 and x < 50:
+        print('%d is small even' % x)
+    elif x % 2 == 0 and x >= 50:
+        print('%d is large even' % x)
+    else:
+        print('%d is odd' % x)
+
+i   = 0
+sum = 0
+while (i <= 100):
+    sum += i
+    i += 1
+print(sum)
