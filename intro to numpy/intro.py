@@ -1,4 +1,5 @@
 ### Basic intro to Numpy
+# notes of introduction to data science at datacamp
 #   numpy has high speed in calculation, much more faster than built-in func
 
 #   numpy array
