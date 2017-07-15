@@ -271,3 +271,92 @@ print(np.intersect1d(Z1,Z2))
 Problem 30
 How to ignore all numpy warnings (not recommended)?
 """
+# -----------------------------------------------------------------------------
+"""
+Problem 31
+Is the following expressions true? 
+np.sqrt(-1) == np.emath.sqrt(-1)
+"""
+np.sqrt(-1)  # nan
+np.emath.sqrt(-1)  # 1j
+
+"""
+Problem 32
+How to get the dates of yesterday, today and tomorrow?
+"""
+today = np.datetime64('today', 'D')
+yesterday = today - np.timedelta64(1, 'D')
+tomorrow  = today + np.timedelta64(1, 'D')
+
+"""
+Problem 33
+How to get all the dates corresponding to the month of July 2016?
+"""
+alldate = np.arange('2016-07-01', '2016-08-01', dtype = 'datetime64')
+alldate
+# or
+alldate = np.arange('2016-07', '2016-08', dtype = 'datetime64[D]')
+alldate
+
+"""
+Problem 34
+How to compute ((A+B)*(-A/2)) in place (without copy)?
+"""
+A = 1
+B = 3
+np.multiply(np.add(A, B), np.divide(-A, 2))
+
+"""
+Problem 35
+Extract the integer part of a random array using 5 different methods
+"""
+x = 5. * np.random.randn(5)
+np.floor(x)
+np.trunc(x)
+[int(i) for i in x]
+x.astype(int)
+x - x % 1
+
+"""
+Problem 36
+Create a 5x5 matrix with row values ranging from 0 to 4
+"""
+np.matrix(np.random.randint(0, 5, size = (5, 5)))
+# or
+x = np.zeros((5, 5))
+x += np.arange(5)
+
+"""
+Problem 37
+Consider a generator function that generates 10 integers and use it to build an array
+"""
+def generateInt(min, max):
+    return np.random.randint(min, max, size = 10)
+
+np.array(generateInt(0, 10))
+# or
+def generate():
+    for x in range(10):
+        yield x
+Z = np.fromiter(generate(),dtype=float,count=-1)
+print(Z)
+
+"""
+Problem 38
+Create a vector of size 10 with values ranging from 0 to 1, both excluded
+"""
+np.linspace(0, 1, 11, endpoint = False)[1:]
+
+"""
+Problem 39
+Create a random vector of size 10 and sort it
+"""
+x = np.random.randn(10)
+np.sort(x)
+
+"""
+Problem 40
+How to sum a small array faster than np.sum?
+"""
+x = np.arange(10)
+np.add.reduce(x)
