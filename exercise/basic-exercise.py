@@ -78,3 +78,152 @@ list2 = [5, 6, 10, 13, 25, 30]
 merge2(list1, list2)    
     
 # -----------------------------------------------------------------------------
+"""
+Problem 2
+Design the game of "rock, scissor, cloth"
+
+@2017-07-15
+"""
+import random as rnd
+choice_lst = ['rock', 'scissor', 'cloth']
+winner_lst = [['rock', 'scissor'], ['scissor', 'cloth'], ['cloth', 'rock']]
+
+
+while True:
+    people_guess = input('Make your choice: ')
+    computer_guess = rnd.choice(choice_lst)
+    
+    if people_guess not in choice_lst:
+        people_guess = input('Please select from rock, scissor or cloth: ')
+        continue
+    
+    if computer_guess == people_guess:
+        print('Tie game, go overtime')
+    elif [computer_guess, people_guess] in winner_lst:
+        print('You lose, try again...')
+    else:
+        print('You win!')
+        break
+
+# -----------------------------------------------------------------------------
+"""
+Problem 3
+Split the list by same adjacent elements
+    [0, 0, 0, 1, 1, 2, 3, 3, 3, 2, 3, 3, 3, 0, 0] -->
+    [0, 0, 0], [1, 1], [2], [3, 3, 3], [2], [3, 3, 3], [0, 0]
+
+@2017-07-15
+"""
+
+# need to be revised, get error if all elements are identical, temporarily use set()
+def splitLst(lst):
+    
+    returnLst = [] 
+    lst_copy = lst[:]
+    idx = 1
+    
+    # get return directly if there is only one element
+    if len(lst_copy) == 1:
+        returnLst.append(lst_copy)
+    
+    # while the lst_copy has at least one element
+    while len(lst_copy) > 1:
+        # cut point
+        cutoff = 0
+        
+        # not a good choice here...
+        if len(set(lst_copy)) == 1: 
+            returnLst.append(lst_copy)
+            break
+        
+        if lst_copy[idx] != lst_copy[idx - 1]:
+            cutoff = idx 
+            # cut off the prev part and append it into return list
+            returnLst.append(lst_copy[:cutoff])
+            del lst_copy[:cutoff]
+            # start from beginning
+            idx = 0
+        
+        idx += 1        
+    
+    return returnLst
+            
+splitLst([0])
+splitLst([0, 0, 0])
+splitLst([0, 1])
+splitLst([0, 0, 0, 1, 1, 2, 3, 3, 3, 2, 3, 3, 3, 0, 0])            
+    
+    
+def splitLst2(lst):
+    returnLst = []
+    lst_copy = lst[:]
+    last_cut = 0
+
+    for idx, element in enumerate(lst_copy):
+        # if idx is not at the last position
+        if idx < (len(lst_copy) - 1):
+            
+            if lst_copy[idx] != lst_copy[idx + 1]:
+                returnLst.append(lst_copy[last_cut:(idx + 1)])
+                last_cut = idx + 1
+        # idx at last position
+        else:
+            returnLst.append(lst_copy[last_cut:])
+        
+    return returnLst
+
+# test
+splitLst2([0])
+splitLst2([0, 0, 0, 0])
+splitLst2([0, 0, 1, 1])
+splitLst2([0, 0, 0, 1, 1, 2, 3, 3, 3, 2, 3, 3, 3, 0, 0, 1, 1, 1, 1, 2]) 
+
+"""
+    other methods
+    use a 2D list, see if the adjacent elements are equal, if yes:
+        append it to result[-1]
+    if not:
+        append an empty list to result
+"""
+def splitLst3(lst):
+    result = [[ ]]
+    length = len(lst)
+    
+    for i in range(length):
+        if i < (length - 1):
+            if lst[i] == lst[i + 1]:
+                result[-1].append(lst[i])
+            else:
+                result[-1].append(lst[i])
+                # just like insert a 'marker' between two different elements
+                result[-1].append([])
+                
+    result[-1].append(lst[i])
+    return result
+
+splitLst3([0, 0, 0, 1, 1, 2, 3, 3, 3, 2, 3, 3, 3, 0, 0, 1, 1, 1, 1, 2]) 
+
+
+"""
+    Motivated by the above idea:
+"""
+
+def splitLst4(lst):
+    result = ''
+    str_lst = ''.join(str(x) for x in lst)
+    length = len(str_lst)
+    
+    for idx, string in enumerate(str_lst):
+        if idx < (length - 1):
+            if str_lst[idx] == str_lst[idx + 1]:   
+                result += str_lst[idx]
+            else:
+                result += str_lst[idx]
+                result += '|'
+    
+    result += str_lst[idx]
+    return result
+
+result = splitLst4([0, 0, 0, 1, 1, 2, 3, 3, 3, 2, 3, 3, 3, 0, 0, 1, 1, 1, 1, 2]) 
+# get '000|11|2|333|2|333|00|1111|2'
+[int(i) for i in result.split('|')]
