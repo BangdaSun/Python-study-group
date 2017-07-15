@@ -168,3 +168,106 @@ Create a checkerboard 8x8 matrix using the tile function
 x = np.tile(np.array([[0, 1], [1, 0]]), (4, 4))
 
 # -----------------------------------------------------------------------------
+"""
+Problem 21
+Normalize a 5x5 random matrix
+"""
+x = np.random.randint(20, size = (5, 5))
+(x - np.mean(x)) / np.std(x)
+
+"""
+Problem 22
+Create a custom dtype that describes a color as four unsigned bytes (RGBA)
+"""
+color = np.dtype([('r', np.ubyte, 1),
+                  ('g', np.ubyte, 1),
+                  ('b', np.ubyte, 1),
+                  ('a', np.ubyte, 1)])
+
+"""
+Problem 23
+Multiply a 5x3 matrix by a 3x2 matrix (real matrix product)
+"""
+X = np.matrix(np.random.randint(10, size = (5, 3)))
+Y = np.matrix(np.random.randint(20, size = (3, 2)))
+X * Y
+np.dot(X, Y)
+
+"""
+Problem 24
+Given a 1D array, negate all elements which are between 3 and 8, in place.
+"""
+x = np.random.randint(11, size = 15)
+x[np.logical_and(3 < x, x < 8)] *= -1 
+
+
+"""
+Problem 25
+What is the output of the following script?
+print(sum(range(5),-1))
+from numpy import *
+print(sum(range(5),-1))
+"""
+print(sum(range(5), -1))
+print(np.sum(range(5), -1))  # --> ERROR!!
+
+"""
+Problem 26
+Consider an integer vector Z, which of these expressions are legal?
+Z**Z
+2 << Z >> 2
+Z <- Z
+1j*Z
+Z/1/1
+Z<Z>Z
+"""
+Z = int(3)
+Z ** Z
+2 << Z >> 2  # bitwise operation 2 << Z: return 2 with bits shifted to the left by Z
+"""
+    Explaination: (<< and >> in python)
+        shift each bit in its left operand to the right, 0's are produced at left
+        11100101 >> 1 --> 01110010
+        11100101 >> 2 --> 00111001
+        11100101 >> 3 --> 00011100, >> 1 equivalent to divide 2
+        
+        11100101 << 1 --> 1110010100
+        11100101 << 2 --> 11100101000, << 1 equivalent to multiple 2 ** 1
+        (number will increase)
+        
+        use bin() to test
+"""
+Z < -Z
+1j * Z
+Z / 1 / 1
+Z < Z > Z
+
+"""
+Problem 27
+What are the result of the following expressions?
+np.array(0) / np.array(0)
+np.array(0) // np.array(0)
+np.array([np.nan]).astype(int).astype(float)
+"""
+np.array(0) / np.array(0)  # RuntimeWarning: divide by zero encountered in divide
+np.array(0) // np.array(0)  # RuntimeWarning: divide by zero encountered in floor_divide
+np.array([np.nan]).astype(int).astype(float)  # array([ -2.14748365e+09])
+
+"""
+Problem 28
+How to round away from zero a float array ?
+"""
+
+
+"""
+Problem 29
+How to find common values between two arrays?
+"""
+Z1 = np.random.randint(0,10,10)
+Z2 = np.random.randint(0,10,10)
+print(np.intersect1d(Z1,Z2))
+
+"""
+Problem 30
+How to ignore all numpy warnings (not recommended)?
+"""
