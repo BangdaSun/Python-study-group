@@ -360,3 +360,85 @@ How to sum a small array faster than np.sum?
 """
 x = np.arange(10)
 np.add.reduce(x)
+
+# -----------------------------------------------------------------------------
+"""
+Problem 41
+Consider two random array A and B, check if they are equal
+"""
+A = np.random.randn(5)
+B = np.random.randn(5)
+np.equal(A, B)
+np.sum(A == B) == 5
+np.array_equal(A, B)
+
+"""
+Problem 42
+Make an array immutable (read-only)
+"""
+z = np.zeros(10)
+z.flags.writeable = False
+z[0] = 1
+
+"""
+Problem 43
+Consider a random 10x2 matrix representing cartesian coordinates, convert them to polar coordinates
+"""
+x = np.random.randn(10, 2)
+X, Y = x[:, 0], x[:, 1]
+R = np.sqrt(X ** 2 + Y ** 2)
+T = np.arctan2(Y, X)
+print(R, T)
+
+"""
+Problem 44
+Create random vector of size 10 and replace the maximum value by 0
+"""
+x = np.random.randn(10)
+x[x == x.max()] = 0
+x[x.argmax()] = 0
+
+"""
+Problem 45
+Create a structured array with x and y coordinates covering the [0,1]x[0,1] area
+"""
+Z = np.zeros((5,5), [('x',float),('y',float)])
+Z['x'], Z['y'] = np.meshgrid(np.linspace(0, 1, 5),
+                             np.linspace(0, 1, 5))
+
+"""
+Problem 46
+Given two arrays, X and Y, construct the Cauchy matrix C (Cij =1/(xi - yj))
+"""
+X = np.array([2., 3., 4., 5.])
+Y = np.array([7., 8., 9., 1.])
+C = np.zeros((4, 4))
+for i in range(4):
+    for j in range(4):
+        C[i, j] = 1 / (X[i] - Y[j])
+        
+        
+"""
+Problem 47
+Print the minimum and maximum representable value for each numpy scalar type
+"""
+
+"""
+Problem 48
+How to print all the values of an array?
+"""
+
+
+
+"""
+Problem 49
+How to find the closest value (to a given scalar) in a vector?
+"""
+x = np.random.randn(10)
+s = .52
+x[np.abs(x - s).argmin()]
+
+"""
+Problem 50
+Create a structured array representing a position (x,y) and a color (r,g,b) 
+"""
