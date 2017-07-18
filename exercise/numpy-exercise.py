@@ -442,3 +442,100 @@ x[np.abs(x - s).argmin()]
 Problem 50
 Create a structured array representing a position (x,y) and a color (r,g,b) 
 """
+
+# -----------------------------------------------------------------------------
+"""
+Problem 51
+Consider a random vector with shape (100,2) representing coordinates, find point by point distances
+"""
+X = np.random.randn(100, 2)
+
+# with scipy
+import scipy
+import scipy.spatial
+D = scipy.spatial.distance.cdist(X, X)
+
+"""
+Problem 52
+How to convert a float (32 bits) array into an integer (32 bits) in place?
+"""
+x = np.array([1, 2, 3], dtype = 'float32')
+x.astype('int32', copy = False)
+
+"""
+Problem 53
+How to read the following file?
+1, 2, 3, 4, 5
+6,  ,  , 7, 8
+ ,  , 9,10,11
+"""
+# use readLine or...
+s = StringIO("""1, 2, 3, 4, 5\n
+                6,  ,  , 7, 8\n
+                 ,  , 9,10,11\n""")
+Z = np.genfromtxt(s, delimiter=",", dtype=np.int)
+print(Z)
+ 
+"""
+Problem 54 
+What is the equivalent of enumerate for numpy arrays?
+"""
+# ndenumerate
+# ndindex(.shape)
+
+"""
+Problem 55
+Generate a generic 2D Gaussian-like array
+"""
+X, Y = np.meshgrid(np.linspace(-1, 1, 10), np.linspace(-1, 1, 10))
+D = np.sqrt(X **2  + Y ** 2)
+sigma, mu = 1., 0.
+G = np.exp(- (D - mu)**2 / (2. * sigma ** 2))
+
+"""
+Problem 56
+How to randomly place p elements in a 2D array?
+"""
+p = np.array([1, 2, 3, 4])
+X = np.zeros((5, 5))
+X.shape
+idx = np.random.randint(low = 0, high = X.shape[0], size = len(p))
+idy = np.random.randint(low = 0, high = X.shape[1], size = len(p))
+X[idx, idy] = p
+X
+# or use ... np.put(), np.random.choice()
+
+"""
+Problem 57
+Subtract the mean of each row of a matrix
+"""
+X = np.matrix(np.array([[1, 2, 4],
+                        [0, 1, 3],
+                        [3, 2, 2]]))
+X - X.mean(axis = 1)  # 1 is horizontal, in R 1 is vertical
+
+"""
+Problem 58
+How to sort an array by the nth column? 
+"""
+X = np.array([[1, 2, 5],
+              [3, 1, 4],
+              [4, 3, 1]])
+X[X[:, 1].argsort()]
+    
+"""
+Problem 59
+How to tell if a given 2D array has null columns? 
+"""
+np.isnan(X)
+# or...
+
+"""
+Problem 60
+Find the nearest value from a given value in an array
+"""
+element = 0.3
+X = np.random.randn(5, 3)
+X.flat[np.abs(X - element).argmin()]
+
+# X.flat --> expand X by row default
