@@ -1,4 +1,5 @@
-""" Numpy exercise """
+""" Numpy exercise 
+https://github.com/rougier/numpy-100/blob/master/100%20Numpy%20exercises.ipynb"""
 import numpy as np
 
 """
@@ -650,3 +651,57 @@ for i in range(X.shape[1]):
 
 # or
 X[[1, 0], :] = X[[0, 1], :]
+
+# -----------------------------------------------------------------------------
+"""
+Problem 72X
+Consider a set of 10 triplets describing 10 triangles (with shared vertices), 
+find the set of unique line segments composing all the triangles 
+"""
+
+"""
+Problem 73X
+Given an array C that is a bincount, how to produce an array A such that np.bincount(A) == C?
+"""
+
+"""
+Problem 74X
+How to compute averages using a sliding window over an array?
+"""
+window = 3
+x = np.arange(10)
+col1 = x[0:-2]
+col2 = x[1:-1]
+col3 = x[2:]
+X = np.array([col1, col2, col3]).transpose()
+X.mean(axis = 1)
+# or ??
+def moving_average(a, n=3) :
+    ret = np.cumsum(a, dtype=float)
+    ret[n:] = ret[n:] - ret[:-n]
+    return ret[n - 1:] / n
+
+Z = np.arange(20)
+print(moving_average(Z, n=3))
+
+"""
+Problem 75
+Consider a one-dimensional array Z, build a two-dimensional array whose first 
+row is (Z[0],Z[1],Z[2]) and each subsequent row is shifted by 1 (last row should be (Z[-3],Z[-2],Z[-1])
+"""
+Z = np.arange(25)
+# number of rows should be len(Z) - 2
+col1 = Z[0:-2]
+col2 = Z[1:-1]
+col3 = Z[2:]
+np.array([col1, col2, col3]).transpose()
+
+"""
+Problem 76
+How to negate a boolean, or to change the sign of a float inplace?
+"""
+x = np.array([False, True, False])
+np.negative(x)
+~x
+x = np.array([1, 2, 3])
+np.negative(x)
