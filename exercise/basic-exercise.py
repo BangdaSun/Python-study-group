@@ -227,3 +227,54 @@ def splitLst4(lst):
 result = splitLst4([0, 0, 0, 1, 1, 2, 3, 3, 3, 2, 3, 3, 3, 0, 0, 1, 1, 1, 1, 2]) 
 # get '000|11|2|333|2|333|00|1111|2'
 [int(i) for i in result.split('|')]
+
+# -----------------------------------------------------------------------------
+"""
+Problem 4
+Maze game - using recursion
+
+@08/05/2017
+"""
+
+def valid(grid, row, column):
+    # check if it can go through
+    # for 2D array, len(arr) --> number of rows, len(arr[0]) --> number of columns
+    return (row >= 0 and row < len(grid) and column >= 0 and column < len(grid[0]) and grid[row][column] == 1)
+    
+def walk(grid, x, y):
+    # this means it goes to the exit, 2 <-- path
+    if x == len(grid) - 1 and y == len(grid[0]) - 1:
+        print('We make it...')
+        print(grid)
+        grid[x][y] = 2
+        return True
+    
+    if valid(grid, x, y):
+        grid[x][y] = 2
+        
+        # recursive
+        # if there is a path in all four directions...
+        # if there it is, set the value at grid to 2, otherwise set it to 1
+        if walk(grid, x, y + 1) or walk(grid, x - 1, y) or walk(grid, x, y - 1) or walk(grid, x + 1, y):
+            return True
+        else:
+            grid[x][y] = 1
+            return False
+    else:
+        return False
+
+def main():
+    # 1 <-- connect, 0 <-- wall
+    grid = [[1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1],
+            [1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1],
+            [0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0],
+            [1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1],
+            [1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1],
+            [1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+
+    print(walk(grid, 0, 0))
+    
+if __name__ == "__main__":
+    main()
