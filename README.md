@@ -20,3 +20,8 @@ Data Visualization
 ### Introduction to scikit-learn
 
 Machine Learning and Data Mining
+
+### Other
+
+[Intermediate Python - Python Tips](http://book.pythontips.com/en/latest/index.html)
+
