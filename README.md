@@ -24,4 +24,5 @@ Machine Learning and Data Mining
 ### Other
 
 [Intermediate Python - Python Tips](http://book.pythontips.com/en/latest/index.html)
+
 [for-else](http://book.pythontips.com/en/latest/for_-_else.html)
