@@ -38,9 +38,12 @@ mylist.pop(0)     # specify index want to remove and return the removed element
 del(mylist[0])    # delete directly
 
 #   rearrange
-#   keep in mind this will change list directly with no undo operations...
-mylist.reverse
-mylist.sort
+#   keep in mind this will change list directly with no undo operations... this is inplace operation
+mylist.reverse()
+mylist.sort()
+
+#   this operation is not in place, use build-in sorted() function
+sorted(mylist)
 
 ### List comprehension
 #   where we can creaet list using for loop but within one line
