@@ -3,9 +3,10 @@ A series lectures about python basic and its application in statistics &amp; dat
 
 ### Basic python
 
-Data types; Data Structures (list, dictionary, tuple); Flow Control; OOP Design; Built-in Pac.
+Data types; Data Structures (list, dictionary, tuple); Flow Control; OOP Design; Built-ikagesn Pac.
 
-For built-in packages, there are several of them I think are efficient and always used: `collections`, `itertools`, `functools`, `threading`, `multiprocessing`.kages
+For built-in packages, there are several of them I think are efficient and always used: `collections`, `itertools`, `functools`, `threading`, `multiproces.
+ages
 
 ### Introduction to Numpy
 
